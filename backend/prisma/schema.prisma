@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Player {
+  id           Int    @id @default(autoincrement())
+  name         String
+  totalTime    Int
+  minutes      String
+  seconds      String
+  milliseconds String
+}
+
+model Time {
+  id        Int    @unique
+  startTime BigInt
+}
+
+model Character {
+  id           Int     @id @default(autoincrement())
+  character    String  @unique
+  coordinateX1 Decimal @db.Decimal(10, 3)
+  coordinateX2 Decimal @db.Decimal(10, 3)
+  coordinateY1 Decimal @db.Decimal(10, 3)
+  coordinateY2 Decimal @db.Decimal(10, 3)
+}

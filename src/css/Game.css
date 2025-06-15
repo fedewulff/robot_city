@@ -1,0 +1,142 @@
+/*IMAGE*/
+.robotCityImg {
+  width: 100%;
+}
+
+/*RULES MENU*/
+.rulesMenuContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  border: 0.5rem solid #ffa500;
+  color: #ffa500;
+  width: fit-content;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.rulesMenuContainer h1 {
+  margin: auto;
+}
+.rulesMenuContainer input {
+  margin: 0.5rem 0 0 0;
+  width: 100%;
+  font-size: 1.25rem;
+  border: none;
+  border-radius: 0.25rem;
+  background: #ffa500;
+  padding: 0.25rem;
+}
+
+.characters {
+  display: flex;
+  gap: 2rem;
+}
+
+.characters img {
+  height: 120px;
+  width: 120px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin: 1rem 0 0 0;
+}
+.name {
+  margin: auto;
+  width: fit-content;
+}
+.rulesMenuContainer button {
+  width: fit-content;
+  margin: 1rem auto 0;
+  padding: 0.75rem 1rem;
+  font-size: 1.25rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #ffa500;
+}
+/*LEADERBOARD*/
+.leaderBoardButton {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 0.25rem solid #ffa500;
+  color: #ffa500;
+  background: black;
+  font-size: 1rem;
+  cursor: pointer;
+}
+/*SCREEN IMAGES*/
+.charactersImages {
+  position: fixed;
+  display: flex;
+  gap: 2rem;
+  top: 0rem;
+  width: fit-content;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+.charactersImages img {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  box-shadow: 0px 3px 7px black;
+}
+.green {
+  border: 0.25rem solid rgb(48, 207, 0);
+}
+.red {
+  border: 0.25rem solid red;
+}
+
+/*ImgClick*/
+.circle {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 0.25rem solid #ffa500;
+  background-color: rgba(231, 198, 14, 0.548);
+}
+.characthersButton {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  border: 0.25rem solid #ffa500;
+  overflow: hidden;
+}
+.characthersButton button {
+  border: none;
+  color: #ffa500;
+  background: black;
+  font-size: 1rem;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 7rem;
+}
+.characthersButton button:hover {
+  background: rgb(112, 7, 0);
+}
+.finalTime {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border: 0.25rem solid #ffa500;
+  color: #ffa500;
+  width: fit-content;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 8rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
