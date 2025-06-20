@@ -8,7 +8,7 @@ module.exports.postStartTime = async (req, res) => {
       startTime: Date.now(),
     },
   })
-  res.json({ msg: "done" })
+  res.json({ msg: "Time started" })
 }
 //STOP TIME
 module.exports.getTotalTime = async (req, res) => {
@@ -23,10 +23,8 @@ module.exports.getTotalTime = async (req, res) => {
   const players = await prisma.player.findMany({
     orderBy: { totalTime: "asc" },
   })
-  console.log(players)
-  console.log(totalTime)
-  const top10 = totalTime - (players[9] ? players[9].time : 3599999)
-  console.log(top10)
+
+  const top10 = totalTime - (players[9] ? players[9].totalTime : 3599999)
 
   if (totalTime < 1000) {
     const miliseconds = totalTime.toString()
@@ -34,7 +32,7 @@ module.exports.getTotalTime = async (req, res) => {
     return
   }
   if (totalTime < 60000) {
-    const secondsArray = (totalTime / 1000).toString().split(".")
+    const secondsArray = (totalTime / 1000).toFixed(3).toString().split(".")
     res.json({ top10, min: "0", sec: secondsArray[0], mil: secondsArray[1], totalTime })
     return
   }
@@ -44,5 +42,17 @@ module.exports.getTotalTime = async (req, res) => {
     res.json({ top10, min: minutesArray[0], sec: secondsArray[0], mil: secondsArray[1], totalTime })
     return
   }
-  res.json({ totalTime })
+  if (totalTime >= 3600000) {
+    res.json({ top10, min: "60", sec: "60", mil: "999", totalTime })
+    return
+  }
+}
+//DELETE TIME FROM TIME TABLE
+module.exports.deleteTimeIdFromDB = async (req, res) => {
+  await prisma.time.delete({
+    where: {
+      id: req.body.timeId,
+    },
+  })
+  res.json({ msg: "timeId deleted from DB" })
 }

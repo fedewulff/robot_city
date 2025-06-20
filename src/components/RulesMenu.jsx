@@ -1,7 +1,7 @@
 import { useState } from "react"
 
-function RulesMenu({ setShowRulesMenu, setTimeId }) {
-  async function onSubmit(e) {
+function RulesMenu({ setTimeId, setShowLdbBtnAndRules, setGameEnd }) {
+  async function startGame(e) {
     e.preventDefault()
     const randomNumber = Math.floor(Math.random() * 2147483646)
     try {
@@ -15,14 +15,15 @@ function RulesMenu({ setShowRulesMenu, setTimeId }) {
       const data = await response.json()
       console.log(data)
       setTimeId(randomNumber)
-      setShowRulesMenu(false)
+      setGameEnd(false)
+      setShowLdbBtnAndRules(false)
     } catch (error) {
-      console.error("Network error:", error)
+      console.error(error)
     }
   }
 
   return (
-    <form className="rulesMenuContainer" onSubmit={onSubmit}>
+    <form className="rulesMenuContainer" onSubmit={startGame}>
       <h1>ROBOT CITY</h1>
       <div>
         <div>Find these characters as fast as you can!</div>
@@ -46,10 +47,3 @@ function RulesMenu({ setShowRulesMenu, setTimeId }) {
   )
 }
 export default RulesMenu
-
-{
-  /* <div>
-        <label htmlFor="name">Enter your name:</label>
-        <input type="text" name="name" id="name" autoComplete="off" value={name} onChange={(e) => setName(e.target.value)} required />
-      </div> */
-}

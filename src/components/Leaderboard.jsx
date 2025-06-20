@@ -1,9 +1,8 @@
 import { useState } from "react"
 
-function Leaderboard({ setShowLeaderboardBtn, showLeaderboardBtn, setShowRulesMenu }) {
-  const [showLeaderboardPlayers, setShowLeaderboardPlayers] = useState(false)
+function Leaderboard({ setShowLdbBtnAndRules, showLdbBtnAndRules }) {
   const [players, setPlayers] = useState()
-  console.log(players)
+  const [showPlayers, setShowPlayers] = useState(false)
 
   async function showLeaderboard() {
     try {
@@ -13,40 +12,50 @@ function Leaderboard({ setShowLeaderboardBtn, showLeaderboardBtn, setShowRulesMe
         },
       })
       const data = await response.json()
-      console.log(data.players.time)
-      console.log(data.players)
+
       setPlayers(data.players)
-      setShowLeaderboardBtn(false)
-      setShowRulesMenu(false)
-      setShowLeaderboardPlayers(true)
+      setShowLdbBtnAndRules(false)
+      setShowPlayers(true)
     } catch (error) {
       console.error("Network error:", error)
     }
   }
   function closeLeaderboard() {
-    setShowLeaderboardBtn(true)
-    setShowRulesMenu(true)
-    setShowLeaderboardPlayers(false)
+    setShowLdbBtnAndRules(true)
+    setShowPlayers(false)
   }
 
   return (
     <>
-      {showLeaderboardBtn && (
+      {showLdbBtnAndRules && (
         <button className="leaderBoardButton" onClick={showLeaderboard}>
           Leaderboard
         </button>
       )}
-      {showLeaderboardPlayers && (
-        <div className="leaderboard">
-          <button onClick={closeLeaderboard}> X</button>
-          {players.map((player) => (
-            <div key={player.id} className="player">
-              <div>{player.name}</div>
-              <div>
-                {player.minutes}:{player.seconds}:{player.milliseconds}
+      {showPlayers && (
+        <div className="leaderboardPlayers">
+          <button onClick={closeLeaderboard} className="closeLeaderboard">
+            {" "}
+            X
+          </button>
+          <h1 className="top10">TOP 10</h1>
+          <div className="dividingLine"></div>
+          <div>
+            {players.map((player, index) => (
+              <div key={player.id}>
+                <div className="player">
+                  <div className="playerPositionAndName">
+                    <div>{index + 1}</div>
+                    <div>{player.name}</div>
+                  </div>
+                  <div>
+                    {player.minutes}m {player.seconds}.{player.milliseconds}s
+                  </div>
+                </div>
+                <div className="dividingLine"></div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       )}
     </>

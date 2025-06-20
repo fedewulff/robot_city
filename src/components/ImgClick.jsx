@@ -1,52 +1,18 @@
 import { useState, useEffect } from "react"
 
-function ImgClick({ showRulesMenu, setShowRulesMenu, timeId, characters, setCharacters }) {
-  const [clickCoord, setclickCoord] = useState()
-  const [clickCoordTotalImg, setclickCoordTotalImg] = useState()
-  const [showCharactersNames, setShowCharactersNames] = useState(true)
+function ImgClick({ setShowLdbBtnAndRules, timeId, characters, setCharacters, setGameEnd }) {
   const [finalTime, setFinalTime] = useState()
-  const [top10, setTop10] = useState()
+  const [top10, setTop10] = useState(false)
   const [name, setName] = useState("")
 
   function playAgain() {
     setFinalTime()
-    setShowRulesMenu(true)
-    setclickCoord()
-    setclickCoordTotalImg()
-    setShowCharactersNames()
-    setCharacters({ pikachu: false, mojojojo: false, goku: false })
+    setTop10(false)
     setName("")
+    setCharacters({ pikachu: false, mojojojo: false, goku: false })
+    setShowLdbBtnAndRules(true)
   }
-  function characterClicked(character) {
-    if (character === "Pikachu") setCharacters((prevState) => ({ ...prevState, pikachu: true }))
-    if (character === "Mojo Jojo") setCharacters((prevState) => ({ ...prevState, mojojojo: true }))
-    if (character === "Goku") setCharacters((prevState) => ({ ...prevState, goku: true }))
-  }
-  function handleImgClick(e) {
-    const x = ((e.target.naturalWidth * e.nativeEvent.offsetX) / e.target.clientWidth).toFixed(2)
-    const y = ((e.target.naturalHeight * e.nativeEvent.offsetY) / e.target.clientHeight).toFixed(2)
-    if (!showRulesMenu && x < 1877 && y < 2648) {
-      setclickCoord({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY })
-      setclickCoordTotalImg({ x: x, y: y })
-      setShowCharactersNames(true)
-    }
-  }
-  async function characterButtonClick(e) {
-    console.log(e.target.value)
-    try {
-      const response = await fetch(`http://localhost:5000/character/${e.target.value}/${clickCoordTotalImg.x}/${clickCoordTotalImg.y}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      const data = await response.json()
-      setShowCharactersNames(false)
-      characterClicked(data.msg)
-    } catch (error) {
-      console.error("Network error:", error)
-    }
-  }
-  async function uploadName(e) {
+  async function uploadNameToDB(e) {
     e.preventDefault()
     try {
       const response = await fetch(`http://localhost:5000/addNameToDB`, {
@@ -59,6 +25,21 @@ function ImgClick({ showRulesMenu, setShowRulesMenu, timeId, characters, setChar
       const data = await response.json()
       console.log(data)
       playAgain()
+    } catch (error) {
+      console.error("Network error:", error)
+    }
+  }
+  async function deleteTimeIdFromDB() {
+    try {
+      const response = await fetch(`http://localhost:5000/deleteTimeFromDB`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ timeId }),
+      })
+      const data = await response.json()
+      console.log(data)
     } catch (error) {
       console.error("Network error:", error)
     }
@@ -78,6 +59,8 @@ function ImgClick({ showRulesMenu, setShowRulesMenu, timeId, characters, setChar
             setTop10(true)
           }
           setFinalTime(data)
+          setGameEnd(true)
+          deleteTimeIdFromDB()
         } catch (error) {
           console.error(error)
         }
@@ -85,67 +68,43 @@ function ImgClick({ showRulesMenu, setShowRulesMenu, timeId, characters, setChar
     }
   }, [characters])
 
-  if (finalTime)
-    return (
-      <div>
-        <img src="../images/robotCity.jpg" alt="Robot City" className="robotCityImg" />
-        <div className="finalTime">
-          <h3>Your time</h3>
-          <div>
-            {finalTime.min}:{finalTime.sec}:{finalTime.mil}
-          </div>
-          {top10 && (
-            <form onSubmit={uploadName}>
-              <label htmlFor="name">Name:</label>
-              <input type="text" name="name" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
-              <button type="submit">ADD</button>
-            </form>
-          )}
-          <button onClick={playAgain}>Play Again</button>
-        </div>
-      </div>
-    )
-
   return (
     <>
-      <>
-        <img src="../images/robotCity.jpg" alt="Robot City" className="robotCityImg" onClick={handleImgClick} />
-        {clickCoord && clickCoordTotalImg && showCharactersNames && (
-          <div>
-            <div
-              className="circle"
-              style={{
-                left: clickCoord.x - 24,
-                top: clickCoord.y - 24,
-              }}
-            ></div>
-
-            <div
-              className="characthersButton"
-              style={{
-                left: clickCoordTotalImg.x < 960 ? clickCoord.x + 28 : clickCoord.x - 148,
-                top: clickCoordTotalImg.y < 2430 ? clickCoord.y - 24 : clickCoord.y - 104,
-              }}
-            >
-              {!characters.pikachu && (
-                <button type="button" value={"Pikachu"} onClick={characterButtonClick}>
-                  Pikachu
-                </button>
-              )}
-              {!characters.mojojojo && (
-                <button type="button" value={"Mojo Jojo"} onClick={characterButtonClick}>
-                  Mojo Jojo
-                </button>
-              )}
-              {!characters.goku && (
-                <button type="button" value={"Goku"} onClick={characterButtonClick}>
-                  Goku
-                </button>
-              )}
-            </div>
+      {finalTime && (
+        <div className="finalTime">
+          <h1>Your time</h1>
+          <div className="myTime">
+            {finalTime.min}m {finalTime.sec}.{finalTime.mil}s
           </div>
-        )}
-      </>
+          <div className="dividingLine"></div>
+          {top10 && (
+            <div>
+              <h2> Congratulations!</h2>
+              <p>You made it to the TOP 10</p>
+              <p>Enter your name to be in the leaderboard</p>
+              <form onSubmit={uploadNameToDB} className="top10form">
+                <label htmlFor="name">Name:</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  minLength={1}
+                  maxLength={20}
+                  autoComplete="off"
+                  required
+                />
+                <button type="submit">ADD</button>
+              </form>
+              <div className="dividingLine"></div>
+            </div>
+          )}
+          <button onClick={playAgain} className="playAgain">
+            Play Again
+          </button>
+        </div>
+      )}
     </>
   )
 }

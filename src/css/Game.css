@@ -5,7 +5,7 @@
 
 /*RULES MENU*/
 .rulesMenuContainer {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -15,7 +15,7 @@
   padding: 1.5rem;
   border-radius: 0.5rem;
   background-color: rgba(0, 0, 0, 0.8);
-  top: 3rem;
+  top: 5rem;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -38,8 +38,8 @@
 }
 
 .characters img {
-  height: 120px;
-  width: 120px;
+  height: 7.5rem;
+  width: 7.5rem;
   object-fit: cover;
   border-radius: 0.5rem;
   margin: 1rem 0 0 0;
@@ -68,7 +68,49 @@
   color: #ffa500;
   background: black;
   font-size: 1rem;
-  cursor: pointer;
+}
+.leaderboardPlayers {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border: 0.5rem solid #ffa500;
+  color: #ffa500;
+  width: fit-content;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  width: 45%;
+}
+.top10 {
+  margin: auto;
+  font-size: 2.25rem;
+  margin-bottom: 1.5rem;
+}
+.playerPositionAndName {
+  display: flex;
+  gap: 1rem;
+}
+.player {
+  display: flex;
+  gap: 13rem;
+  justify-content: space-between;
+}
+.closeLeaderboard {
+  background: none;
+  border: none;
+  color: #ffa500;
+  margin-left: auto;
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+.dividingLine {
+  height: 1px;
+  background: #ffa500;
+  margin: 0.5rem 0;
 }
 /*SCREEN IMAGES*/
 .charactersImages {
@@ -83,8 +125,8 @@
   padding: 0.5rem;
 }
 .charactersImages img {
-  height: 100px;
-  width: 100px;
+  height: 6.25rem;
+  width: 6.25rem;
   object-fit: cover;
   border-radius: 0.5rem;
   box-shadow: 0px 3px 7px black;
@@ -118,18 +160,17 @@
   color: #ffa500;
   background: black;
   font-size: 1rem;
-  cursor: pointer;
   height: 2.5rem;
   width: 7rem;
 }
 .characthersButton button:hover {
   background: rgb(112, 7, 0);
 }
+/*FINAL TIME*/
 .finalTime {
   position: fixed;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
   border: 0.25rem solid #ffa500;
   color: #ffa500;
   width: fit-content;
@@ -139,4 +180,49 @@
   top: 8rem;
   left: 50%;
   transform: translateX(-50%);
+}
+.finalTime h1,
+.finalTime h2 {
+  margin: 1rem auto;
+  width: fit-content;
+}
+.myTime {
+  margin: 1rem auto;
+  font-size: 1.5rem;
+}
+.top10form {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+}
+.top10form input {
+  margin: 0.25rem 0 0.75rem 0;
+  width: 100%;
+  font-size: 1.25rem;
+  border: none;
+  border-radius: 0.25rem;
+  background: #ffa500;
+  padding: 0.25rem;
+}
+.top10form button {
+  width: fit-content;
+  margin: 1rem auto;
+  font-size: 1.25rem;
+  border: none;
+  color: #ffa500;
+  background: none;
+}
+.playAgain {
+  width: fit-content;
+  margin: 1rem auto 0;
+  padding: 0.75rem 1rem;
+  font-size: 1.25rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #ffa500;
+}
+
+button {
+  cursor: pointer;
 }
