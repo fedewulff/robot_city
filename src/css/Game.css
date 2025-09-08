@@ -1,3 +1,7 @@
+body {
+  background: black;
+}
+
 /*IMAGE*/
 .robotCityImg {
   width: 100%;
@@ -8,6 +12,7 @@
   position: fixed;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2.5rem;
   border: 0.5rem solid #ffa500;
   color: #ffa500;
@@ -34,6 +39,7 @@
 
 .characters {
   display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
 }
 
@@ -70,12 +76,11 @@
   font-size: 1rem;
 }
 .leaderboardPlayers {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   border: 0.5rem solid #ffa500;
   color: #ffa500;
-  width: fit-content;
   padding: 1.5rem;
   border-radius: 0.5rem;
   background-color: rgba(0, 0, 0, 0.8);
@@ -96,7 +101,6 @@
 }
 .player {
   display: flex;
-  gap: 13rem;
   justify-content: space-between;
 }
 .closeLeaderboard {
@@ -225,4 +229,80 @@
 
 button {
   cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+  .leaderboardPlayers,
+  .rulesMenuContainer {
+    width: 60%;
+  }
+}
+@media (max-width: 900px) {
+  .leaderboardPlayers,
+  .rulesMenuContainer {
+    width: 80%;
+    font-size: 1.25rem;
+  }
+}
+@media (max-width: 600px) {
+  /* .container {
+    height: 100svh;
+    overflow-y: hidden;
+  } */
+  /* .robotCityImg {
+    height: 100svh;
+    width: auto;
+  } */
+  /* .circle {
+    display: none;
+  } */
+  .characthersButton {
+    border: 0.125rem solid #ffa500;
+  }
+  .leaderboardPlayers {
+    top: 1rem;
+    padding: 1rem;
+  }
+  .leaderboardPlayers,
+  .rulesMenuContainer,
+  .finalTime {
+    width: 98%;
+    font-size: 1rem;
+    border: 0.25rem solid #ffa500;
+  }
+  .top10 {
+    margin-bottom: 1rem;
+  }
+  .characters img {
+    height: 4.5rem;
+    width: 4.5rem;
+  }
+  .charactersImages img {
+    height: 5rem;
+    width: 5rem;
+  }
+  .finalTime {
+    top: 0.5rem;
+    padding: 1rem;
+  }
+  .finalTime h1,
+  .finalTime h2 {
+    margin: 0.75rem auto;
+  }
+  .myTime {
+    margin: 0.75rem auto;
+  }
+  .top10form {
+    margin-top: 1rem;
+  }
+  .top10form input {
+    margin: 0.25rem 0 0.75rem 0;
+    font-size: 1rem;
+  }
+  .top10form button {
+    margin: 0.5rem auto;
+  }
+  .playAgain {
+    margin: 0.5rem auto 0;
+  }
 }

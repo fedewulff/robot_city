@@ -22,8 +22,6 @@ function ImgClick({ setShowLdbBtnAndRules, timeId, characters, setCharacters, se
         },
         body: JSON.stringify({ name, finalTime }),
       })
-      const data = await response.json()
-      console.log(data)
       playAgain()
     } catch (error) {
       console.error("Network error:", error)
@@ -38,8 +36,6 @@ function ImgClick({ setShowLdbBtnAndRules, timeId, characters, setCharacters, se
         },
         body: JSON.stringify({ timeId }),
       })
-      const data = await response.json()
-      console.log(data)
     } catch (error) {
       console.error("Network error:", error)
     }
@@ -54,7 +50,6 @@ function ImgClick({ setShowLdbBtnAndRules, timeId, characters, setCharacters, se
             },
           })
           const data = await response.json()
-          console.log(data)
           if (data.top10 < 0) {
             setTop10(true)
           }

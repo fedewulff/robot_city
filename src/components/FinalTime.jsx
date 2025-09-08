@@ -33,7 +33,7 @@ function FinalTime() {
           </div>
         )}
         <button onClick={playAgain} className="playAgain">
-          Play Again
+          Play Agaiddn
         </button>
       </div>
     </div>

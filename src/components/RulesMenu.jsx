@@ -12,8 +12,6 @@ function RulesMenu({ setTimeId, setShowLdbBtnAndRules, setGameEnd }) {
         },
         body: JSON.stringify({ randomNumber }),
       })
-      const data = await response.json()
-      console.log(data)
       setTimeId(randomNumber)
       setGameEnd(false)
       setShowLdbBtnAndRules(false)

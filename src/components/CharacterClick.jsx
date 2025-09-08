@@ -5,7 +5,6 @@ function CharacterClick({ clickCoordTotalImg, clickCoord, setclickCoord, charact
     if (character === "Goku") setCharacters((prevState) => ({ ...prevState, goku: true }))
   }
   async function characterButtonClick(e) {
-    console.log(e.target.value)
     try {
       const response = await fetch(`http://localhost:5000/character/${e.target.value}/${clickCoordTotalImg.x}/${clickCoordTotalImg.y}`, {
         headers: {

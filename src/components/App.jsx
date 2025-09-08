@@ -24,7 +24,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className="container">
       <img src="../images/robotCity.jpg" alt="Robot City" className="robotCityImg" onClick={handleImgClick} />
 
       <Leaderboard setShowLdbBtnAndRules={setShowLdbBtnAndRules} showLdbBtnAndRules={showLdbBtnAndRules} />
@@ -44,7 +44,7 @@ function App() {
         characters={characters}
         setCharacters={setCharacters}
       />
-    </>
+    </div>
   )
 }
 
