@@ -1,3 +1,5 @@
+const URL = import.meta.env.VITE_BACKEND_URL
+
 function CharacterClick({ clickCoordTotalImg, clickCoord, setclickCoord, characters, setCharacters }) {
   function characterClicked(character) {
     if (character === "Pikachu") setCharacters((prevState) => ({ ...prevState, pikachu: true }))
@@ -6,7 +8,7 @@ function CharacterClick({ clickCoordTotalImg, clickCoord, setclickCoord, charact
   }
   async function characterButtonClick(e) {
     try {
-      const response = await fetch(`http://localhost:5000/character/${e.target.value}/${clickCoordTotalImg.x}/${clickCoordTotalImg.y}`, {
+      const response = await fetch(`${URL}/character/${e.target.value}/${clickCoordTotalImg.x}/${clickCoordTotalImg.y}`, {
         headers: {
           "Content-Type": "application/json",
         },

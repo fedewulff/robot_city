@@ -1,11 +1,11 @@
-import { useState } from "react"
+const URL = import.meta.env.VITE_BACKEND_URL
 
 function RulesMenu({ setTimeId, setShowLdbBtnAndRules, setGameEnd }) {
   async function startGame(e) {
     e.preventDefault()
     const randomNumber = Math.floor(Math.random() * 2147483646)
     try {
-      const response = await fetch("http://localhost:5000/startTime", {
+      const response = await fetch(`${URL}/startTime`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

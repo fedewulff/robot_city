@@ -1,4 +1,5 @@
 import { useState } from "react"
+const URL = import.meta.env.VITE_BACKEND_URL
 
 function Leaderboard({ setShowLdbBtnAndRules, showLdbBtnAndRules }) {
   const [players, setPlayers] = useState()
@@ -6,7 +7,7 @@ function Leaderboard({ setShowLdbBtnAndRules, showLdbBtnAndRules }) {
 
   async function showLeaderboard() {
     try {
-      const response = await fetch(`http://localhost:5000/getNamesFromDB`, {
+      const response = await fetch(`${URL}/getNamesFromDB`, {
         headers: {
           "Content-Type": "application/json",
         },

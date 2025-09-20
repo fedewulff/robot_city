@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+const URL = import.meta.env.VITE_BACKEND_URL
 
 function ImgClick({ setShowLdbBtnAndRules, timeId, characters, setCharacters, setGameEnd }) {
   const [finalTime, setFinalTime] = useState()
@@ -15,7 +16,7 @@ function ImgClick({ setShowLdbBtnAndRules, timeId, characters, setCharacters, se
   async function uploadNameToDB(e) {
     e.preventDefault()
     try {
-      const response = await fetch(`http://localhost:5000/addNameToDB`, {
+      const response = await fetch(`${URL}/addNameToDB`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,7 +30,7 @@ function ImgClick({ setShowLdbBtnAndRules, timeId, characters, setCharacters, se
   }
   async function deleteTimeIdFromDB() {
     try {
-      const response = await fetch(`http://localhost:5000/deleteTimeFromDB`, {
+      const response = await fetch(`${URL}/deleteTimeFromDB`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -44,7 +45,7 @@ function ImgClick({ setShowLdbBtnAndRules, timeId, characters, setCharacters, se
     if (characters.pikachu && characters.mojojojo && characters.goku) {
       ;(async () => {
         try {
-          const response = await fetch(`http://localhost:5000/totalTime/${timeId}`, {
+          const response = await fetch(`${URL}/totalTime/${timeId}`, {
             headers: {
               "Content-Type": "application/json",
             },
