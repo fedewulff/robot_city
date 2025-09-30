@@ -2,7 +2,7 @@
 
 <p align="center">A full-stack game from <a href="https://www.theodinproject.com/lessons/nodejs-where-s-waldo-a-photo-tagging-app">Odin</a></p>
 
-## Demo: [Live](teenage-alanah-fede-org-6a2490a6.koyeb.app)
+<h3>Demo: <a href="https://teenage-alanah-fede-org-6a2490a6.koyeb.app">Robot city</a></h3>
 
 ## Frontend built with
 
