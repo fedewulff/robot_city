@@ -2,7 +2,12 @@
 
 <p align="center">A full-stack game from <a href="https://www.theodinproject.com/lessons/nodejs-where-s-waldo-a-photo-tagging-app">Odin</a></p>
 
+<h3>Video sample: <a href="https://www.loom.com/share/251fc9ae8ebc46e1a8ebb1dab5add1f7?sid=ef85bc2e-a0f5-4209-a60b-d921f927e5a8">Robot city</a></h3>
+
 <h3>Demo: <a href="https://robot-city-psbb-peuf0lg52-fedes-projects-80ee2302.vercel.app/">Robot city</a></h3>
+Demo is being deployed on a free tier Paas. It might take a minute to load.
+
+<br/><br/>
 
 ## Frontend built with
 
